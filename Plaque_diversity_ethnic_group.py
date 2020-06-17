@@ -27,6 +27,7 @@ def get_ethnicity(filename):
         if not res == None:
             results.append(res)
             print(i, end = ',')
+            print(row['wikidata_id'])
     
     return results
 
