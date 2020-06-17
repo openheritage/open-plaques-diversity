@@ -5,7 +5,7 @@ from Plaque_diversity_ethnic_group import q_wikidata
 import pytest
 
 # Test the query function
-@pytest.mark.parameterize('q, result',[
+@pytest.mark.parametrize('q, result',[
     ('Q8016', 'English people'),
     ('Q257911', 'African Americans')])
 def test_q_wikidata(q, result):
