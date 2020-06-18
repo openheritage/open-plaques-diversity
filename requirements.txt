@@ -90,7 +90,6 @@ requests==2.23.0
 rope==0.17.0
 Send2Trash==1.5.0
 setuptools-yaml==0.4
-sip==4.19.13
 six==1.15.0
 snowballstemmer==2.0.0
 sortedcontainers==2.1.0
