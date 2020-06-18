@@ -43,9 +43,6 @@ MarkupSafe==1.1.1
 matplotlib==3.1.3
 mccabe==0.6.1
 mistune==0.8.4
-mkl-fft==1.0.15
-mkl-random==1.1.1
-mkl-service==2.3.0
 more-itertools @ file:///home/conda/feedstock_root/build_artifacts/more-itertools_1592197792446/work
 mypy-extensions==0.4.3
 nbconvert==5.6.1
