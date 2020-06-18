@@ -88,7 +88,6 @@ QtPy==1.9.0
 qwikidata==0.4.0
 requests==2.23.0
 rope==0.17.0
-Rtree==0.9.4
 Send2Trash==1.5.0
 setuptools-yaml==0.4
 sip==4.19.13
