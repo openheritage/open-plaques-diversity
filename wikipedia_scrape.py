@@ -15,7 +15,7 @@ def main():
 def get_wiki_contents(url):
     name = url.split('/')[-1]
     contents = wikipedia.page(name).content
-    
+    return contents    
     
 if __name__ == '__main__':
     main()
