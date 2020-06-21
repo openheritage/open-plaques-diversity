@@ -8,8 +8,14 @@ df.dropna(subset = ['en_wikipedia_url'], inplace = True)
 
 # Trigger words and there weightings
 
-
-for index, row in df.iterrows():
-    name = row['en_wikipedia_url'].split('/')[-1]
+def main():
+    for index, row in df.iterrows():
+        r = row['en_wikipedia_url']
+        
+def get_wiki_contents(url):
+    name = url.split('/')[-1]
     contents = wikipedia.page(name).content
     
+    
+if __name__ == '__main__':
+    main()
