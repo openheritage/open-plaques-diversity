@@ -13,8 +13,11 @@ def main():
         r = row['en_wikipedia_url']
         
 def get_wiki_contents(url):
-    name = url.split('/')[-1]
-    contents = wikipedia.page(name).content
+    try:
+        name = url.split('/')[-1]
+        contents = wikipedia.page(name).content
+    except:
+        print('Wiki retrieval failed')
     return contents    
     
 if __name__ == '__main__':
