@@ -42,13 +42,13 @@ for index, row in df.iterrows():
             score += trigger_words[trigger_word]
     
     print(score, row['full_name'])
-    scores[row['full_name']] = score
+    scores[row['full_name']] = score 
     
 print(scores)
 sorted_scores = sorted(scores.items(), key=lambda item: item[1])[::-1]
 
 print(sorted_scores[:200])
 
-file = open('bad_actor_scores.txt', 'w')
-file.write(str(sorted_scores))
+file = open('bad_actor_scores_sorted.txt', 'w', encoding = 'utf8')
+file.write(str(sorted_scores)) 
 file.close()

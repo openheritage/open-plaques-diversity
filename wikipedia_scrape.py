@@ -13,7 +13,7 @@ def main():
         r = row['en_wikipedia_url']
         
 def get_wiki_contents(url):
-    name = url.split('/')[-1].replace('-','_')
+    name = url.split('/')[-1]
     try:
         contents = wikipedia.page(name).content
         return contents 
