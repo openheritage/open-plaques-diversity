@@ -45,3 +45,10 @@ for index, row in df.iterrows():
     scores[row['full_name']] = score
     
 print(scores)
+sorted_scores = sorted(scores.items(), key=lambda item: item[1])[::-1]
+
+print(sorted_scores[:200])
+
+file = open('bad_actor_scores.txt', 'w')
+file.write(str(sorted_scores))
+file.close()
