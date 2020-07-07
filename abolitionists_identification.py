@@ -13,9 +13,9 @@ df.dropna(subset = ['en_wikipedia_url'], inplace = True)
 
 abolistionist_words =  {'abolitionists':10,
                         'abolitionist':10,
-                        'anti-slavery':10,
+                        'anti-slavery':20,
                         'campaign':5,
-                        'Anti-Slavery Society':5,
+                        'Anti-Slavery Society':15,
                        }
 
 scores = {}
