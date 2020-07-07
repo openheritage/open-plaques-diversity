@@ -73,7 +73,9 @@ def get_scores():
             score += 50
             
         print(score, row['full_name'])
-        scores[row['full_name']] = score 
+        scores[row['full_name']] = score
+    
+    return scores
 
 def trigger_word_score(url):
     content = get_wiki_contents(url).lower()
