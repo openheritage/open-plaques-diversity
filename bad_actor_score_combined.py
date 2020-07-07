@@ -10,19 +10,29 @@ FILENAME = 'open-plaques-subjects-london.csv'
 ABOLITLIST = 'https://en.wikipedia.org/wiki/List_of_abolitionists'
 SLAVEOWNERSURL = ['https://en.wikipedia.org/wiki/List_of_slave_owners',
                   'https://en.wikipedia.org/wiki/Category:British_slave_owners']
+BIRTHPERIOD = 1900
+
+# Note that these have been pre-set here to reduce the runtime - update if the 
+# data changes. Elizabeth Barret Browning has been removed from the list due to
+# the tenuous link.
+SLAVEOWNERWIKIDATA = ['Q3523736', 'Q160852', 'Q7347686']
 
 df = pd.read_csv(FILENAME)
-
 df.dropna(subset = ['en_wikipedia_url'], inplace = True)
 
 # Trigger words - see trigger_words_investigation.ipynb
-trigger_words = {'slave':10,
-                 'slaves':10,
+trigger_words = {'slave':20,
+                 'slaves':20,
                  'slavery':10,
                  'owned':5,
+                 'land':5,
                  'treatment':5,
-                 'refused':3,
-                 'plantation':15}
+                 'plantation':15,
+                 'abolitionists':-10,
+                 'abolitionist':-10,
+                 'anti-slavery':-20,
+                 'anti-salavery society':-15,
+                }
 
 def get_scores():
     # Get a list of abolitionists from the wiki list
@@ -41,11 +51,22 @@ def get_scores():
         
         # Filter out those which are abolitionisits 
         if name in ab_list:
-            score = 0
+            score -= 50
         
         # Filter out those whose ethnicity is bame
         if row['ethnicity'] == 'bame':
-            score = 0
+            score -= 50
+        
+        # Reduce the score if the date of birth is outside the range
+        try: # Not all entries have a date of birth
+            if int(row['born_in']) > BIRTHPERIOD:
+                score -= 20
+        except:
+            pass
+            
+        # Increase the score of the know slave owners from wikidata
+        if row['wikidata_id'] in SLAVEOWNERWIKIDATA:
+            score += 50
         
         # Increase the score of the know slaves from the wiki list
         if name in slave_owners_wiki:
@@ -82,6 +103,6 @@ if __name__ == '__main__':
     
     print(sorted_scores[:200])
     
-    file = open('bad_actor_scores_sorted.txt', 'w', encoding = 'utf8')
+    file = open('bad_actor_scores_combined_sorted.txt', 'w', encoding = 'utf8')
     file.write(str(sorted_scores)) 
     file.close()
