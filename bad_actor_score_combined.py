@@ -28,10 +28,15 @@ trigger_words = {'slave':20,
                  'land':5,
                  'treatment':5,
                  'plantation':15,
-                 'abolitionists':-10,
-                 'abolitionist':-10,
-                 'anti-slavery':-20,
-                 'anti-salavery society':-15,
+                 'actor':-20,
+                 'poet':-20,
+                 'writter':-20,
+                 'author':-20,
+                 'composer':-20,
+                 'abolitionists':-20,
+                 'abolitionist':-20,
+                 'anti-slavery':-30,
+                 'anti-salavery society':-20,
                 }
 
 def get_scores():
@@ -105,6 +110,6 @@ if __name__ == '__main__':
     
     print(sorted_scores[:200])
     
-    file = open('bad_actor_scores_combined_sorted.txt', 'w', encoding = 'utf8')
+    file = open('bad_actor_scores_combined_altered.txt', 'w', encoding = 'utf8')
     file.write(str(sorted_scores)) 
     file.close()
