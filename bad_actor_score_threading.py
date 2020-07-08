@@ -6,7 +6,7 @@ from collections import Counter
 import re
 import pandas as pd
 
-from threading import Thread
+import concurrent.futures
 
 FILENAME = 'open-plaques-subjects-london.csv'
 ABOLITLIST = 'https://en.wikipedia.org/wiki/List_of_abolitionists'
@@ -51,18 +51,17 @@ def get_scores():
         
     scores = {}
     threads = []
-    for index, row in df.iterrows(): 
-        thread = Thread(target=calc_score, args=(row, ab_list, slave_owners_wiki,))
-        thread.start()
-        threads.append(thread)
-    
-    for thread in threads:
-        name, score = thread.join()
-        scores[name] = score
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = []
+        for i, row in df.iterrows(): 
+            futures.append(executor.submit(calc_score, i,row, ab_list, slave_owners_wiki,))
+        for future in futures:
+            name, score = future.result()
+            scores[name] = score
     
     return scores
         
-def calc_score(row, ab_list, slave_owners_wiki):
+def calc_score(i,row, ab_list, slave_owners_wiki):
     name = row['full_name']
     
     # Make an initial score using word appearances in the corresponding wikipages
@@ -91,7 +90,8 @@ def calc_score(row, ab_list, slave_owners_wiki):
     if name in slave_owners_wiki:
         score += 50
         
-    print(score, row['full_name'])
+   # print(score, row['full_name'])
+    print(i, end = ',')
     return row['full_name'], score
         
 def trigger_word_score(url):
