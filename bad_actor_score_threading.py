@@ -8,7 +8,7 @@ import pandas as pd
 
 import concurrent.futures
 
-FILENAME = 'open-plaques-subjects-london.csv'
+FILENAME = 'open-plaques-subjects-united-kingdom.csv' #'open-plaques-subjects-london.csv'
 ABOLITLIST = 'https://en.wikipedia.org/wiki/List_of_abolitionists'
 SLAVEOWNERSURL = ['https://en.wikipedia.org/wiki/List_of_slave_owners',
                   'https://en.wikipedia.org/wiki/Category:British_slave_owners']
