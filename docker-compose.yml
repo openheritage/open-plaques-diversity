@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  notebooks:
+    build:
+      dockerfile: Dockerfile 
+      context: .
+    image: open-plaques-diversity:0.0.6
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data   
+    ports:
+      - 8888:8888
+    container_name: open_plaques_diversity
+    command: 'start-notebook.sh'
