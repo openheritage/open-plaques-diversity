@@ -4,7 +4,7 @@ services:
     build:
       dockerfile: Dockerfile 
       context: .
-    image: open-plaques-diversity:0.0.3
+    image: open-plaques-diversity:0.0.6
     volumes:
       - ./notebooks:/home/jovyan/work
       - ./data:/home/jovyan/data   
