@@ -23,3 +23,9 @@ This is a standalone project so that it won't interfere with the main OpenPlaque
 6. Use python or ruby
 7. Write tests so that individual examples can be easily re-run, especially when dealing with an anomoly.
 8. Consider using tools like Datasette. Would it help, or is it an overhead?
+
+# Development
+This project has a Docker environment. To access Jupyter notebooks, run and click on the link generated:
+```sh
+docker-compose up
+```
